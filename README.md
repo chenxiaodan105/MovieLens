@@ -7,7 +7,7 @@ Released by GroupLens in 2003
 Link: https://grouplens.org/datasets/movielens/1m/
 
 #### 3. Tools
-AWS EC2(4 instances to simulate 4 nodes: 1 Namenode,1 SecondaryNode, 2 Datanodes)
+AWS EC2(4 instances to simulate 4 nodes: 1 Namenode,1 SecondaryNode, 2 Datanodes),
 AWS EMR, Hadoop, Spark, Ambari
 
 #### 4. Methods
