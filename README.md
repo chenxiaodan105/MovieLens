@@ -19,3 +19,6 @@ b. Conduct movie recommendation for specific users
 
 #### 5. Impact
 Compare advantages and disadvantages of different methods for big data project between AWS EMR, and multiple AWS EC2 instances. 
+
+#### 6. Improvemnet
+Try Apache Ambari later and rewrite the project in scala
