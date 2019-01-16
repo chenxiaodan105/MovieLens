@@ -5,6 +5,7 @@ movie recommendation using 1 million ratings from 6000 users on 4000 movies.
 #### 2. Data Source
 Released by GroupLens in 2003 
 Link: https://grouplens.org/datasets/movielens/1m/
+Explaination: http://files.grouplens.org/datasets/movielens/ml-1m-README.txt
 
 #### 3. Tools
 AWS EC2(4 instances to simulate 4 nodes: 1 Namenode,1 SecondaryNameNode, 2 Datanodes),
