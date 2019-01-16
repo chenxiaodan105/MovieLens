@@ -1,9 +1,5 @@
 
 # coding: utf-8
-
-# In[ ]:
-
-
 #!/usr/bin/env python
 import findspark
 findspark.init('/home/ubuntu/spark')
@@ -52,16 +48,16 @@ def computeRmse(model, data, n):
     Compute RMSE (Root Mean Squared Error).
     """
     predictions = model.predictAll(data.map(lambda x: (x[0], x[1])))
-    predictionsAndRatings = predictions.map(lambda x: ((x[0], x[1]), x[2]))       .join(data.map(lambda x: ((x[0], x[1]), x[2])))       .values()
+    predictionsAndRatings = predictions.map(lambda x: ((x[0], x[1]), x[2])).join(data.map(lambda x: ((x[0], x[1]), x[2])))       .values()
     return sqrt(predictionsAndRatings.map(lambda x: (x[0] - x[1]) ** 2).reduce(add) / float(n))
 
 if __name__ == "__main__":
     if (len(sys.argv) != 3):
-        print "Usage: /home/ubuntu/spark/bin/spark-submit --driver-memory 2g " +           "MovieLensALS.py movieLensDataDir personalRatingsFile"
+        print "Usage: /home/ubuntu/spark/bin/spark-submit --driver-memory 2g " + "MovieLensALS.py movieLensDataDir personalRatingsFile"
         sys.exit(1)
 
     # set up environment
-    conf = SparkConf()       .setAppName("MovieLensALS")       .set("spark.executor.memory", "2g")
+    conf = SparkConf().setAppName("MovieLensALS").set("spark.executor.memory", "2g")
     sc = SparkContext(conf=conf)
 
     # load personal ratings
@@ -90,9 +86,9 @@ if __name__ == "__main__":
     # training, validation, test are all RDDs of (userId, movieId, rating)
 
     numPartitions = 4
-    training = ratings.filter(lambda x: x[0] < 6)       .values()       .union(myRatingsRDD)       .repartition(numPartitions)       .cache()
+    training = ratings.filter(lambda x: x[0] < 6).values().union(myRatingsRDD).repartition(numPartitions).cache()
 
-    validation = ratings.filter(lambda x: x[0] >= 6 and x[0] < 8)       .values()       .repartition(numPartitions)       .cache()
+    validation = ratings.filter(lambda x: x[0] >= 6 and x[0] < 8).values().repartition(numPartitions).cache()
 
     test = ratings.filter(lambda x: x[0] >= 8).values().cache()
 
@@ -116,7 +112,7 @@ if __name__ == "__main__":
     for rank, lmbda, numIter in itertools.product(ranks, lambdas, numIters):
         model = ALS.train(training, rank, numIter, lmbda)
         validationRmse = computeRmse(model, validation, numValidation)
-        print "RMSE (validation) = %f for the model trained with " % validationRmse +               "rank = %d, lambda = %.1f, and numIter = %d." % (rank, lmbda, numIter)
+        print "RMSE (validation) = %f for the model trained with " % validationRmse + "rank = %d, lambda = %.1f, and numIter = %d." % (rank, lmbda, numIter)
         if (validationRmse < bestValidationRmse):
             bestModel = model
             bestValidationRmse = validationRmse
@@ -127,7 +123,7 @@ if __name__ == "__main__":
     testRmse = computeRmse(bestModel, test, numTest)
 
     # evaluate the best model on the test set
-    print "The best model was trained with rank = %d and lambda = %.1f, " % (bestRank, bestLambda)       + "and numIter = %d, and its RMSE on the test set is %f." % (bestNumIter, testRmse)
+    print "The best model was trained with rank = %d and lambda = %.1f, " % (bestRank, bestLambda)+ "and numIter = %d, and its RMSE on the test set is %f." % (bestNumIter, testRmse)
 
     # compare the best model with a naive baseline that always returns the mean rating
     meanRating = training.union(validation).map(lambda x: x[2]).mean()
