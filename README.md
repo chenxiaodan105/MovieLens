@@ -8,13 +8,13 @@ Link: https://grouplens.org/datasets/movielens/1m/
 
 #### 3. Tools
 AWS EC2(4 instances to simulate 4 nodes: 1 Namenode,1 SecondaryNameNode, 2 Datanodes),
-AWS EMR, Hadoop, Spark, Apache Ambari
+AWS EMR, Hadoop, Spark
 
 #### 4. Methods
 There are 2 stages:
 a. Conduct exploratory data analysis to figure out the distribution of ratings, users, movies using pyspark shell
-b. Calculate movie similarities and conduct movie recommendation for specific users 
+b. Conduct movie recommendation for specific users  
 
 #### 5. Impact
-Compare advantages and disadvantages of different methods for big data project between Apache Ambari developed by Hortonworks, 
+Compare advantages and disadvantages of different methods for big data project between  
 AWS EMR, and multiple AWS EC2 instances. 
