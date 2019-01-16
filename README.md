@@ -13,7 +13,7 @@ AWS EC2(4 instances to simulate 4 nodes: 1 Namenode,1 SecondaryNameNode, 2 Datan
 AWS EMR, Hadoop, Spark
 
 #### 4. Methods
-There are 2 stages:
+Prepare data and split it into train, test, validation datasets; Then train model and tweak the hyperparameters by grid search and find a better model with the least RMSE.There are 2 stages as following:
 a. Conduct exploratory data analysis to figure out the distribution of ratings, users, movies using pyspark shell
 b. Conduct movie recommendation for specific users  
 
